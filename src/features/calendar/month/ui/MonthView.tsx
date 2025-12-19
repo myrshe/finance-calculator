@@ -1,31 +1,30 @@
 import React from "react";
 import { DayCell } from "./DayCell.tsx";
-import {
-  getStartOfMonth,
-  getDaysInMonth,
-  getWeekday,
-} from "../utils/date.ts";
-import { MonthHeader } from "./MonthHeader.tsx";
+import { getStartOfMonth, getDaysInMonth, getWeekday } from "../utils/date.ts";
 import { transactionsMock } from "@/entities/transaction";
+type ViewMode = "month" | "week";
 
 type MonthViewProps = {
   currentDate: Date;
   selectedDate: Date | null;
   onSelectDate: (date: Date) => void;
-  onChangeMonth: (date: Date) => void;
 };
 
-const WeekDays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+const WeekDays = [
+  "Понедельник",
+  "Вторник",
+  "Среда",
+  "Четверг",
+  "Пятница",
+  "Суббота",
+  "Воскресенье",
+];
 
-export const MonthView: React.FC<MonthViewProps> = ({currentDate, selectedDate, onSelectDate, onChangeMonth,}) => {
-
-  const goToPrevMonth = () => {
-    onChangeMonth(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
-  };
-
-  const goToNextMonth = () => {
-    onChangeMonth(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
-  };
+export const MonthView: React.FC<MonthViewProps> = ({
+  currentDate,
+  selectedDate,
+  onSelectDate,
+}) => {
 
   const startOfMonth = getStartOfMonth(currentDate);
   const daysInMonth = getDaysInMonth(currentDate);
@@ -46,13 +45,7 @@ export const MonthView: React.FC<MonthViewProps> = ({currentDate, selectedDate, 
   }
 
   return (
-    <div className="w-[75.5rem] h-[68.5rem] bg-surface-2 rounded-3xl px-[2.185rem] pt-[1.3rem]">
-      <MonthHeader
-        currentDate={currentDate}
-        onPrevMonth={goToPrevMonth}
-        onNextMonth={goToNextMonth}
-      />
-
+    <>
       <div className="grid grid-cols-7 gap-[4px] ">
         {WeekDays.map((day) => (
           <p
@@ -73,7 +66,6 @@ export const MonthView: React.FC<MonthViewProps> = ({currentDate, selectedDate, 
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
-
