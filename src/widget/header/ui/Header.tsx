@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/shared/ui/dropdown-menu";
-import PersonalAccountIcon from "@/shared/assets/icons/logo-personalAcount.svg?react";
+import PersonalAccountIcon from "@/shared/assets/icons/logoPersonalAcount.svg?react";
 
 const navItems = [
   { label: "Главная", href: "/" },

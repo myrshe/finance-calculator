@@ -1,8 +1,7 @@
 import { AddTransactionForm } from "@/features/add-transaction/ui/AddTransactionForm";
-import { MonthView } from "@/features/calendar/ui/Months-view";
+import { MonthView } from "@/features/calendar/ui/MonthView";
+import { ListTransactions } from "@/features/listTransactions/ui/ListTransactions";
 import { useState } from "react";
-
-
 
 export const CalendarPage = () => {
 
@@ -22,7 +21,7 @@ export const CalendarPage = () => {
         onChangeMonth={setCurrentDate}
       />
 
-      <div className="w-[19.375rem] h-[50rem] bg-surface-2"></div>
+      <ListTransactions selectedDate={selectedDate}/>
     </main>
   );
 };

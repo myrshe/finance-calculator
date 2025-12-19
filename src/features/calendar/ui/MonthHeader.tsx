@@ -1,6 +1,6 @@
 import { Button } from "@/shared/ui/button";
-import ArrowLeftIcon from "@/shared/assets/icons/arrow-left.svg?react";
-import ArrowRightIcon from "@/shared/assets/icons/arrow-right.svg?react";
+import ArrowLeftIcon from "@/shared/assets/icons/arrowLeft.svg?react";
+import ArrowRightIcon from "@/shared/assets/icons/arrowRight.svg?react";
 
 type Props = {
   currentDate: Date;

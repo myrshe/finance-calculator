@@ -1,11 +1,12 @@
 import React from "react";
-import { DayCell } from "./Day-cell.tsx";
+import { DayCell } from "./DayCell.tsx";
 import {
   getStartOfMonth,
   getDaysInMonth,
   getWeekday,
 } from "../utils/date.ts";
-import { MonthHeader } from "./Month-header.tsx";
+import { MonthHeader } from "./MonthHeader.tsx";
+import { transactionsMock } from "@/entities/transaction";
 
 type MonthViewProps = {
   currentDate: Date;
@@ -13,6 +14,8 @@ type MonthViewProps = {
   onSelectDate: (date: Date) => void;
   onChangeMonth: (date: Date) => void;
 };
+
+const WeekDays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
 
 export const MonthView: React.FC<MonthViewProps> = ({currentDate, selectedDate, onSelectDate, onChangeMonth,}) => {
 
@@ -38,17 +41,36 @@ export const MonthView: React.FC<MonthViewProps> = ({currentDate, selectedDate, 
     days.push(new Date(currentDate.getFullYear(), currentDate.getMonth(), day));
   }
 
-  while (days.length < 35) {
+  while (days.length < 42) {
     days.push(null);
   }
 
   return (
-    <div className="w-[75.5rem] h-[59.313rem] bg-surface-2 rounded-3xl p-[2.185rem]">
-      <MonthHeader currentDate={currentDate} onPrevMonth={goToPrevMonth} onNextMonth={goToNextMonth}/>
+    <div className="w-[75.5rem] h-[68.5rem] bg-surface-2 rounded-3xl px-[2.185rem] pt-[1.3rem]">
+      <MonthHeader
+        currentDate={currentDate}
+        onPrevMonth={goToPrevMonth}
+        onNextMonth={goToNextMonth}
+      />
 
-      <div className="w-[71.063rem] grid grid-cols-7 grid-rows-5 gap-[4px] mt-[13px]">
+      <div className="grid grid-cols-7 gap-[4px] ">
+        {WeekDays.map((day) => (
+          <p
+            key={day}
+            className="flex justify-center items-center  mt-[13px] text-lg">
+            {day}
+          </p>
+        ))}
+      </div>
+      <div className="w-[71.063rem] grid grid-cols-7 grid-rows-6 gap-[4px]">
         {days.map((day, index) => (
-          <DayCell key={index} day={day} selectedDate={selectedDate} onSelectDate={onSelectDate}/>
+          <DayCell
+            key={index}
+            day={day}
+            selectedDate={selectedDate}
+            onSelectDate={onSelectDate}
+            transactions={transactionsMock}
+          />
         ))}
       </div>
     </div>
