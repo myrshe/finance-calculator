@@ -20,3 +20,4 @@ export const getDayBalance = (transactions: Transaction[], date: Date): number =
      return transactions.filter((t) => t.date === target).reduce((sum, t) => {
          return t.type === "income" ? sum + t.amount : sum - t.amount;}, 0);
 }
+

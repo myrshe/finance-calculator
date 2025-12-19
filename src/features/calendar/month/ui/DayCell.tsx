@@ -6,10 +6,15 @@ type DayCellProps = {
   day: Date | null;
   selectedDate: Date | null;
   onSelectDate: (date: Date) => void;
-  transactions: Transaction[]
+  transactions: Transaction[];
 };
 
-export const DayCell: React.FC<DayCellProps> = ({day, selectedDate, onSelectDate, transactions}) => {
+export const DayCell: React.FC<DayCellProps> = ({
+  day,
+  selectedDate,
+  onSelectDate,
+  transactions,
+}) => {
   if (!day) {
     return (
       <div className="h-[9.938rem] w-[9.938rem] rounded-4xl bg-surface-4" />
@@ -35,19 +40,27 @@ export const DayCell: React.FC<DayCellProps> = ({day, selectedDate, onSelectDate
   return (
     <div
       onClick={() => onSelectDate(day)}
-      className={`h-[9.938rem] w-[9.938rem] rounded-4xl p-3 text-sm bg-input cursor-pointer flex flex-col items-start justify-between ${isSelected ? "bg-primary" : ""}`}>
+      className={`h-[9.938rem] w-[9.938rem] rounded-4xl p-3 text-sm bg-input cursor-pointer flex flex-col items-start justify-between ${
+        isSelected ? "bg-primary" : ""
+      }`}
+    >
       <div className="w-full">
-         {day && (
-           <div className={`text-2xl w-[2.25rem] h-[2.25rem] flex items-center justify-center rounded-xl ${isToday ? "bg-primary" : ""}`}>
-             {day.getDate()}
-           </div>
-         )}
-       </div>
-      <p className={`text-lg 
-        ${balance > 0 ? "text-green-500" : "text-red-500"}`}>
+        {day && (
+          <div
+            className={`text-2xl w-[2.25rem] h-[2.25rem] flex items-center justify-center rounded-xl ${
+              isToday ? "bg-primary" : ""
+            }`}
+          >
+            {day.getDate()}
+          </div>
+        )}
+      </div>
+      <p
+        className={`text-lg 
+        ${balance > 0 ? "text-green-500" : "text-red-500"}`}
+      >
         {balance != 0 ? `${balance}` : ""}
       </p>
     </div>
-    
   );
 };
